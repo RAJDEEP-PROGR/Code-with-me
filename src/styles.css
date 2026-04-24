@@ -1,0 +1,496 @@
+/* Global Styles & Colors */
+:root {
+    --bg-dark: #0A0A0A;
+    --neon-green: #00FF41;
+    --electric-cyan: #00E0FF;
+    --bright-magenta: #FF00FF;
+    --text-light: #C0C0C0;
+    --error-red: #FF3333;
+    --warning-yellow: #FFFF00;
+    --header-bg: #003311; /* Darker green for headers */
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    font-family: 'Share Tech Mono', monospace, 'Courier New', Courier; /* More cyberpunk font */
+    overflow: hidden; /* Prevent scrollbars */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    position: relative;
+    font-size: 16px; /* Base font size */
+}
+
+/* Container for Auth and App */
+.container {
+    background-color: rgba(10, 10, 10, 0.9); /* Slightly transparent dark */
+    border: 2px solid var(--neon-green); /* Thicker, vibrant border */
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 25px rgba(0, 255, 65, 0.7); /* Stronger neon glow */
+    z-index: 10; /* Above matrix effect */
+    max-width: 95%; /* More screen space */
+    width: 1200px; /* Wider app container */
+    box-sizing: border-box;
+    display: flex; /* Ensure flex for app-container */
+    flex-direction: column; /* Stack content vertically */
+    min-height: 90vh; /* Make app container taller */
+}
+
+/* Auth Forms */
+.auth-form {
+    text-align: center;
+    flex-grow: 1; /* Allow auth form to take available space */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center content vertically */
+}
+
+.auth-form h2 {
+    color: var(--electric-cyan); /* Electric cyan for headings */
+    margin-bottom: 15px;
+    font-size: 2.2em;
+    text-shadow: 0 0 10px rgba(0, 224, 255, 0.5);
+}
+
+.auth-form p {
+    margin-bottom: 25px;
+    color: var(--text-light);
+    font-size: 1.1em;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--neon-green);
+    font-size: 1em;
+}
+
+input[type="text"],
+input[type="password"],
+textarea,
+select {
+    background-color: var(--bg-dark);
+    color: var(--neon-green); /* Neon green text */
+    border: 1px solid var(--neon-green); /* Neon green border */
+    padding: 12px;
+    border-radius: 6px;
+    width: calc(100% - 24px); /* Account for padding and border */
+    box-sizing: border-box;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1em;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: var(--electric-cyan); /* Electric cyan border on focus */
+    box-shadow: 0 0 12px rgba(0, 224, 255, 0.7);
+}
+
+.btn {
+    background-color: var(--neon-green); /* Neon green button */
+    color: var(--bg-dark); /* Dark text on button */
+    border: 1px solid var(--neon-green);
+    padding: 12px 25px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s;
+    width: 100%;
+    margin-top: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn:hover {
+    background-color: var(--bg-dark);
+    color: var(--neon-green);
+    border-color: var(--electric-cyan);
+    box-shadow: 0 0 15px rgba(0, 255, 65, 0.7);
+}
+
+.btn-secondary {
+    background-color: var(--bg-dark);
+    color: var(--electric-cyan);
+    border: 1px solid var(--electric-cyan);
+    padding: 12px 25px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-secondary:hover {
+    background-color: var(--electric-cyan);
+    color: var(--bg-dark);
+    border-color: var(--electric-cyan);
+    box-shadow: 0 0 15px rgba(0, 224, 255, 0.7);
+}
+
+.toggle-auth {
+    margin-top: 20px;
+    font-size: 1em;
+    color: var(--text-light);
+}
+
+.toggle-auth a {
+    color: var(--bright-magenta); /* Bright magenta link */
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.toggle-auth a:hover {
+    text-decoration: underline;
+    color: var(--electric-cyan);
+}
+
+/* App Container */
+#app-container {
+    display: none; /* Hidden by default */
+    flex-grow: 1; /* Allow app container to fill space */
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--neon-green);
+}
+
+header h1 {
+    color: var(--electric-cyan);
+    margin: 0;
+    font-size: 2.5em;
+    text-shadow: 0 0 10px rgba(0, 224, 255, 0.5);
+}
+
+.app-wrapper {
+    display: flex;
+    gap: 25px;
+    flex-grow: 1; /* Allow wrapper to fill space */
+}
+
+.code-editor, .chat-container {
+    flex: 1; /* Take equal space */
+    min-width: 350px; /* Minimum width before wrapping */
+    background-color: rgba(10, 10, 10, 0.8);
+    border: 1px solid var(--neon-green);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.editor-header, .chat-header {
+    background-color: var(--header-bg); /* Darker green for headers */
+    padding: 12px;
+    border-bottom: 1px solid var(--neon-green);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.editor-header h3, .chat-header h3 {
+    margin: 0;
+    color: var(--electric-cyan);
+    font-size: 1.3em;
+}
+
+.language-select label {
+    margin-right: 8px;
+    color: var(--text-light);
+}
+
+#code-area {
+    flex-grow: 1; /* Take available height */
+    min-height: 250px; /* Ensure a minimum height */
+    border: none; /* Remove internal border */
+    border-radius: 0; /* No internal border radius */
+    resize: vertical; /* Allow vertical resizing */
+    padding: 15px;
+    line-height: 1.5;
+}
+
+.editor-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    padding: 15px;
+    border-top: 1px solid var(--neon-green);
+    background-color: rgba(10, 10, 10, 0.8);
+}
+
+.output-container {
+    padding: 15px;
+    border-top: 1px solid var(--neon-green);
+    background-color: rgba(10, 10, 10, 0.8);
+    flex-grow: 1; /* Allow output container to fill space */
+    display: flex;
+    flex-direction: column;
+}
+
+.output-container h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: var(--electric-cyan);
+    font-size: 1.1em;
+}
+
+#output-frame {
+    width: 100%;
+    height: 180px; /* Adjusted height */
+    background-color: var(--bg-dark);
+    border: 1px solid var(--neon-green);
+    border-radius: 5px;
+    box-sizing: border-box;
+    flex-shrink: 0; /* Prevent shrinking */
+}
+
+/* Console Output Styles */
+.console-output {
+    width: 100%;
+    height: 120px; /* Fixed height for console */
+    background-color: var(--bg-dark);
+    border: 1px solid var(--neon-green);
+    border-radius: 5px;
+    margin-top: 15px;
+    padding: 10px;
+    overflow-y: auto;
+    font-size: 0.9em;
+    color: var(--neon-green);
+    box-sizing: border-box;
+    flex-grow: 1; /* Allow console to grow */
+}
+
+.console-output div {
+    margin-bottom: 3px;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+.console-output .log-info { color: var(--neon-green); }
+.console-output .log-warn { color: var(--warning-yellow); }
+.console-output .log-error { color: var(--error-red); }
+.console-output .log-debug { color: var(--electric-cyan); }
+
+
+.chat-messages {
+    flex-grow: 1;
+    padding: 15px;
+    overflow-y: auto;
+    max-height: 350px; /* Limit chat height */
+    word-wrap: break-word;
+    color: var(--text-light);
+}
+
+.message {
+    margin-bottom: 8px;
+    font-size: 0.95em;
+}
+
+.message strong {
+    color: var(--neon-green);
+}
+
+.message.user {
+    text-align: right;
+}
+
+.message.user strong {
+    color: var(--electric-cyan);
+}
+
+.message.other {
+    text-align: left;
+}
+
+.message.other strong {
+    color: var(--bright-magenta);
+}
+
+.chat-input {
+    display: flex;
+    padding: 15px;
+    border-top: 1px solid var(--neon-green);
+    background-color: rgba(10, 10, 10, 0.8);
+}
+
+#message-input {
+    flex-grow: 1;
+    margin-right: 15px;
+    width: auto;
+}
+
+/* Custom Notification Pop-up */
+.custom-notification {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(10, 10, 10, 0.95);
+    color: var(--neon-green);
+    padding: 25px 40px;
+    border: 2px solid var(--neon-green);
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(0, 255, 65, 0.8);
+    z-index: 10000; /* Very high z-index to be on top */
+    display: none; /* Hidden by default */
+    font-size: 1.3em;
+    text-align: center;
+    animation: fadeIn 0.3s ease-out forwards;
+    min-width: 300px;
+    max-width: 80%;
+}
+
+.custom-notification.show {
+    display: block;
+}
+
+.custom-notification.error {
+    border-color: var(--error-red);
+    box-shadow: 0 0 30px rgba(255, 51, 51, 0.8);
+    color: var(--error-red);
+}
+
+.custom-notification.warning {
+    border-color: var(--warning-yellow);
+    box-shadow: 0 0 30px rgba(255, 255, 0, 0.8);
+    color: var(--warning-yellow);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translate(-50%, -60%); }
+    to { opacity: 1; transform: translate(-50%, -50%); }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; transform: translate(-50%, -50%); }
+    to { opacity: 0; transform: translate(-50%, -60%); }
+}
+
+
+/* Matrix effect */
+.matrix-rain, .matrix-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1; /* This is important: it must be lower than .container */
+    pointer-events: none; /* Allow clicks to pass through */
+}
+
+.matrix-column {
+    position: absolute;
+    white-space: nowrap;
+    color: var(--neon-green);
+    font-size: 1.3em; /* Slightly larger */
+    line-height: 1.3em;
+    animation: fall linear infinite;
+    opacity: 0.6; /* Slightly more transparent */
+    text-shadow: 0 0 8px rgba(0, 255, 65, 0.6); /* Stronger glow */
+}
+
+@keyframes fall {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100vh); }
+}
+
+.falling-number {
+    position: absolute;
+    color: var(--electric-cyan); /* Cyan for falling numbers */
+    font-size: 2.5em; /* Larger */
+    animation: fall-number linear infinite;
+    opacity: 0.5;
+    text-shadow: 0 0 10px rgba(0, 224, 255, 0.6);
+}
+
+@keyframes fall-number {
+    0% { transform: translateY(-100%); opacity: 0.7; }
+    100% { transform: translateY(100vh); opacity: 0; }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .container {
+        padding: 20px;
+        min-height: 95vh;
+    }
+    .app-wrapper {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .code-editor, .chat-container {
+        min-width: unset;
+        width: 100%;
+    }
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 20px;
+    }
+    header .btn-secondary {
+        margin-top: 15px;
+    }
+    .output-container h4 {
+        font-size: 1em;
+    }
+    #output-frame {
+        height: 150px;
+    }
+    .console-output {
+        height: 100px;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+    .container {
+        padding: 15px;
+        border-radius: 8px;
+    }
+    .auth-form h2 {
+        font-size: 1.8em;
+    }
+    .btn, .btn-secondary {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+    header h1 {
+        font-size: 2em;
+    }
+    .editor-header h3, .chat-header h3 {
+        font-size: 1.1em;
+    }
+    #code-area {
+        min-height: 200px;
+    }
+    .chat-messages {
+        max-height: 250px;
+    }
+    .custom-notification {
+        font-size: 1.1em;
+        padding: 20px 30px;
+    }
+}
+

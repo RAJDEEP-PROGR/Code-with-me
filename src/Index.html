@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeWithMe - Collaborative Coding</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Brython for client-side Python execution -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.11.2/brython.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.11.2/brython_stdlib.js"></script>
+</head>
+<body onload="brython()"> <!-- Initialize Brython on body load -->
+    <!-- Matrix Rain and Falling Numbers Background -->
+    <div class="matrix-rain"></div>
+    <div class="matrix-background"></div>
+
+    <div class="container" id="auth-container">
+        <div class="auth-form" id="login-form">
+            <h2>Welcome to CodeWithMe</h2>
+            <p>Login to collaborate in real-time</p>
+            <form id="login">
+                <div class="form-group">
+                    <label for="login-username">Username</label>
+                    <input type="text" id="login-username" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" required>
+                </div>
+                <button type="submit" class="btn">Login</button>
+                <p class="toggle-auth">Don't have an account? <a href="#" id="show-register">Register</a></p>
+            </form>
+        </div>
+
+        <div class="auth-form" id="register-form" style="display: none;">
+            <h2>Create an Account</h2>
+            <p>Join our coding community</p>
+            <form id="register">
+                <div class="form-group">
+                    <label for="register-username">Username</label>
+                    <input type="text" id="register-username" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-password">Password</label>
+                    <input type="password" id="register-password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password" id="confirm-password" required>
+                </div>
+                <button type="submit" class="btn">Register</button>
+                <p class="toggle-auth">Already have an account? <a href="#" id="show-login">Login</a></p>
+            </form>
+        </div>
+    </div>
+
+    <div class="container" id="app-container" style="display: none;">
+        <header>
+            <h1>CodeWithMe</h1>
+            <button id="logout-btn" class="btn-secondary">Logout</button>
+        </header>
+        
+        <div class="app-wrapper">
+            <div class="code-editor">
+                <div class="editor-header">
+                    <h3>Shared Code Editor</h3>
+                    <div class="language-select">
+                        <label for="language">Language:</label>
+                        <select id="language">
+                            <option value="javascript">JavaScript</option>
+                            <option value="html">HTML</option>
+                            <option value="css">CSS</option>
+                            <option value="python">Python</option>
+                        </select>
+                    </div>
+                </div>
+                <textarea id="code-area" spellcheck="false" placeholder="Write your code here..."></textarea>
+                <div class="editor-footer">
+                    <button id="run-code" class="btn">Run Code</button>
+                    <button id="share-code" class="btn-secondary">Share Link</button>
+                </div>
+                <div class="output-container">
+                    <h4>Rendered Output:</h4>
+                    <iframe id="output-frame" frameborder="0" sandbox="allow-scripts allow-same-origin"></iframe>
+                    <h4>Console Output:</h4>
+                    <div id="console-output" class="console-output"></div>
+                </div>
+            </div>
+
+            <div class="chat-container">
+                <div class="chat-header">
+                    <h3>Live Chat</h3>
+                </div>
+                <div class="chat-messages" id="chat-messages"></div>
+                <div class="chat-input">
+                    <input type="text" id="message-input" placeholder="Type your message...">
+                    <button id="send-message" class="btn">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Notification Pop-up -->
+    <div id="custom-notification" class="custom-notification"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
